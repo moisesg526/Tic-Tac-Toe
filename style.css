@@ -1,0 +1,26 @@
+.main-container {
+  text-align: center;
+}
+
+.grid {
+  border: solid 1px;
+  width: 500px;
+  height: 500px;
+  border-color: #000;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+}
+
+.grid-square {
+  border: solid 1px;
+  cursor: pointer;
+}
+
+.grid-square:hover {
+  background-color: #bebebe;
+}
+
+.cell {
+  border: solid 1px;
+}

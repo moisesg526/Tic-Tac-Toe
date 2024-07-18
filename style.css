@@ -12,15 +12,11 @@
   margin: auto;
 }
 
-.grid-square {
-  border: solid 1px;
-  cursor: pointer;
-}
-
-.grid-square:hover {
-  background-color: #bebebe;
-}
-
 .cell {
   border: solid 1px;
+}
+
+.cell:hover {
+  background-color: #bebebe;
+  cursor: pointer;
 }

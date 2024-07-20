@@ -17,13 +17,27 @@ function boardGame() {
 
 boardGame();
 
-function players(name) {
+function player(name) {
   return {
-    player() {
-      return alert(`Hello ${name}`);
+    player: name,
+    function() {
+      return `${this.name}`;
     },
   };
 }
+
+let player1Prompt = prompt("Player 1 enter your name");
+let player2Prompt = prompt("Player 2 enter your name");
+const player1 = player(JSON.stringify(player1Prompt));
+const player2 = player(JSON.stringify(player2Prompt));
+
+(function displayPlayersName() {
+  const displayPlayer1 = document.createElement("h2");
+  displayPlayer1.classList.add("player-1");
+  displayPlayer1.innerText = player1;
+  console.log(displayPlayer1);
+  mainContainer.appendChild(displayPlayer1);
+})();
 
 function win() {
   let winningCombinations = [
@@ -37,9 +51,3 @@ function win() {
     "3, 5, 7",
   ];
 }
-
-const player1 = players("Playet 1 is X");
-const player2 = players("Player 2 is Y");
-
-player1.player();
-player2.player();

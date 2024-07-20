@@ -17,26 +17,27 @@ function boardGame() {
 
 boardGame();
 
-function player(name) {
+let player1Prompt = prompt("Player 1 enter your name");
+let player2Prompt = prompt("Player 2 enter your name");
+
+function playersName(name) {
   return {
-    player: name,
-    function() {
-      return `${this.name}`;
+    player() {
+      return name;
     },
   };
 }
 
-let player1Prompt = prompt("Player 1 enter your name");
-let player2Prompt = prompt("Player 2 enter your name");
-const player1 = player(JSON.stringify(player1Prompt));
-const player2 = player(JSON.stringify(player2Prompt));
+let player1 = playersName(player1Prompt);
+let player2 = playersName(player2Prompt);
 
 (function displayPlayersName() {
   const displayPlayer1 = document.createElement("h2");
-  displayPlayer1.classList.add("player-1");
-  displayPlayer1.innerText = player1;
-  console.log(displayPlayer1);
+  displayPlayer1.innerText = `Player 1: ${player1.player()} (X)`;
   mainContainer.appendChild(displayPlayer1);
+  const displayPlayer2 = document.createElement("h2");
+  displayPlayer2.innerText = `Player 2: ${player2.player()} (O)`;
+  mainContainer.appendChild(displayPlayer2);
 })();
 
 function win() {

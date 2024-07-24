@@ -1,6 +1,8 @@
 const mainContainer = document.querySelector(".main-container");
 const grid = document.querySelector(".grid");
 mainContainer.appendChild(grid);
+let playerOneInput = [];
+let playerTwoInput = [];
 
 (function boardGame() {
   let count = 0;
@@ -16,12 +18,16 @@ mainContainer.appendChild(grid);
       (function playGame() {
         cell.addEventListener("click", () => {
           turn++;
-          if (turn % 2 === 0) {
-            cell.textContent = "O";
-            console.log(turn);
-          } else {
+          if (turn % 2 !== 0) {
             cell.textContent = "X";
-            console.log(turn);
+            playerOneInput.push(cell.id);
+            console.log(`Player 1: ${playerOneInput}`);
+            win();
+          } else {
+            cell.textContent = "O";
+            playerTwoInput.push(cell.id);
+            console.log(`Player 2: ${playerTwoInput}`);
+            win();
           }
         });
       })();
@@ -63,4 +69,9 @@ function win() {
     "1, 5, 9",
     "3, 5, 7",
   ];
+  if (playerOneInput.some((num) => winningCombinations.includes(num))) {
+    console.log("Player 1 Wins!");
+  } else if (playerTwoInput.some((num) => winningCombinations.includes(num))) {
+    console.log("Player 2 Wins!");
+  }
 }

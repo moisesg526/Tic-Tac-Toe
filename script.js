@@ -2,8 +2,9 @@ const mainContainer = document.querySelector(".main-container");
 const grid = document.querySelector(".grid");
 mainContainer.appendChild(grid);
 
-function boardGame() {
+(function boardGame() {
   let count = 0;
+  let turn = 0;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       count++;
@@ -11,11 +12,22 @@ function boardGame() {
       cell.classList.add("cell");
       cell.setAttribute("id", count);
       grid.appendChild(cell);
+
+      (function playGame() {
+        cell.addEventListener("click", () => {
+          turn++;
+          if (turn % 2 === 0) {
+            cell.textContent = "O";
+            console.log(turn);
+          } else {
+            cell.textContent = "X";
+            console.log(turn);
+          }
+        });
+      })();
     }
   }
-}
-
-boardGame();
+})();
 
 let player1Prompt = prompt("Player 1 enter your name");
 let player2Prompt = prompt("Player 2 enter your name");

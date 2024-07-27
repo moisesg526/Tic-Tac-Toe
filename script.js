@@ -3,6 +3,16 @@ const grid = document.querySelector(".grid");
 mainContainer.appendChild(grid);
 let playerOneInput = [];
 let playerTwoInput = [];
+let winningCombinations = [
+  "1, 2, 3",
+  "4, 5, 6",
+  "7, 8, 9",
+  "1, 4, 7",
+  "2, 5, 8",
+  "3, 6, 9",
+  "1, 5, 9",
+  "3, 5, 7",
+];
 
 (function boardGame() {
   let count = 0;
@@ -27,9 +37,9 @@ let playerTwoInput = [];
             playerTwoInput.push(cell.id);
             console.log(`Player 2: ${playerTwoInput}`);
           }
+          win();
         });
       })();
-      win();
     }
   }
 })();
@@ -57,26 +67,16 @@ let player2 = playersName(player2Prompt);
   mainContainer.appendChild(displayPlayer2);
 })();
 
-let winningCombinations = [
-  "1,2,3",
-  "4, 5, 6",
-  "7, 8, 9",
-  "1, 4, 7",
-  "2, 5, 8",
-  "3, 6, 9",
-  "1, 5, 9",
-  "3, 5, 7",
-];
-
-function win(winner, num1, num2) {
-  if (playerOneInput.some((num) => winningCombinations.includes(num))) {
-    console.log("Player 1 Wins!");
-  } else if (playerTwoInput.some((num) => winningCombinations.includes(num))) {
-    console.log("Player 2 Wins!");
+function win() {
+  //winner, num1, num2
+  for (let i = 0; i < winningCombinations.length; i++) {
+    if (playerOneInput == winningCombinations[i]) {
+      console.log("Player 1 wins");
+    }
   }
-  // const win = new Set(winner);
-  // const set1 = new Set(num1);
-  // const set2 = new Set(num2);
+}
 
-  // let commonNum1 = num1.filter(item => win.)
+function resetGame() {
+  playerOneInput = [];
+  playerTwoInput = [];
 }

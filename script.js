@@ -16,10 +16,12 @@ let winningCombinations = [
 
 (function boardGame() {
   let count = 0;
-  let turn = 0;
+  //   let turn = 0;
+  let playerTurn = true;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      count++;
+      //   count++;
+      playerTurn = !playerTurn;
       const cell = document.createElement("div");
       cell.classList.add("cell");
       cell.setAttribute("id", count);
@@ -27,17 +29,19 @@ let winningCombinations = [
 
       (function playGame() {
         cell.addEventListener("click", () => {
-          turn++;
-          if (turn % 2 !== 0) {
+          //   turn++;
+
+          if (playerTurn === true) {
             cell.textContent = "X";
             playerOneInput.push(cell.id);
+            playerTurn = !playerTurn;
             console.log(`Player 1: ${playerOneInput}`);
           } else {
             cell.textContent = "O";
             playerTwoInput.push(cell.id);
+            playerTurn = !playerTurn;
             console.log(`Player 2: ${playerTwoInput}`);
           }
-          win();
         });
       })();
     }
@@ -67,11 +71,21 @@ let player2 = playersName(player2Prompt);
   mainContainer.appendChild(displayPlayer2);
 })();
 
+function checkForWin(x, o, win) {
+  if (x.length !== win.length) return false;
+  for (let i = 0; i < x.length; i++) {
+    if (x[i] !== win[i]) return false;
+  }
+  return true;
+}
+
 function win() {
-  //winner, num1, num2
+  playerOneInput.sort((a, b) => a - b);
+  playerTwoInput.sort((a, b) => a - b);
   for (let i = 0; i < winningCombinations.length; i++) {
-    if (playerOneInput == winningCombinations[i]) {
+    if (checkForWin(playerOneInput, winningCombinations[i])) {
       console.log("Player 1 wins");
+      return;
     }
   }
 }

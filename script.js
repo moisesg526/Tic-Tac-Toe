@@ -2,6 +2,13 @@ const mainContainer = document.querySelector(".main-container");
 const grid = document.querySelector(".grid");
 mainContainer.appendChild(grid);
 
+const resetBtn = document.createElement("Button");
+mainContainer.appendChild(resetBtn);
+
+resetBtn.textContent = "Reset"
+resetBtn.addEventListener("click", resetGame)
+
+
 let playerOneInput = [];
 let playerTwoInput = [];
 const winningCombinations = [
@@ -52,10 +59,12 @@ const winningCombinations = [
 
     for (let i = 0; i < winningCombinations.length; i++) {
       if (isWinningCombination(playerOneInput, winningCombinations[i])) {
+        alert("Player 1 wins")
         console.log("Player 1 wins");
         resetGame();
         return;
       } else if (isWinningCombination(playerTwoInput, winningCombinations[i])) {
+        alert("Player 2 wins")
         console.log("Player 2 wins!");
         resetGame();
         return;
